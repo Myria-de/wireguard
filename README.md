@@ -62,7 +62,7 @@ Endpoint = domain.meinserver.de:51820
 ## Wireguard starten
 Auf dem Server und Client:
 ```
-wg-quick up wg0
+sudo wg-quick up wg0
 ```
 Infos zur Verbindung:
 ```
@@ -70,11 +70,11 @@ wg show
 ```
 Wireguard beenden:
 ```
-wg-quick down wg0
+sudo wg-quick down wg0
 ```
 Wenn Wireguard automatisch starten soll, beenden Sie den Server zuerst mit „wg-quick down wg0“ und führen dann diese Befehlszeile aus:
 ```
-systemctl enable --now wg-quick@wg0
+sudo systemctl enable --now wg-quick@wg0
 ```
 ## QR-Code für die Smartphone-Konfiguration erzeugen
 Auf einem Client-PC starten:
