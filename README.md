@@ -24,6 +24,7 @@ wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey | sudo tee /etc/wire
 ```
 sudo gedit /etc/wireguard/wg0.conf &
 ```
+**Nur für IPv4**
 ```
 [Interface]
 Address = 100.64.0.1/10
@@ -35,6 +36,26 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACC
 PublicKey = 
 AllowedIPs = 100.64.0.2/32
 ```
+**Für IPv4 und IPv6 mit zwei Clients**
+```
+[Interface]
+Address = 10.66.66.1/24,fd42:42:42::1/64
+ListenPort = 51820
+PrivateKey = MC1GuT/RBjcXEn66fDtoML+/QG86dsD9pSm1g1ar6ns=
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
+[Peer]
+PublicKey = 
+AllowedIPs = 10.66.66.2/32,fd42:42:42::2/128
+PresharedKey = 
+
+[Peer]
+PublicKey = 
+AllowedIPs = 10.66.66.3/32,fd42:42:42::2/128
+PresharedKey = 
+```
+Alle IP-Adressen sind Beispiele. Die IP-Adresse ist frei wählbar, sollte aber – wie in unserem Beispiel – aus einem privaten Adressbereich nach RFC 1918 stammen. Allerdings besteht die Gefahr von Adresskonflikten, wenn derselbe Bereich zufällig auch im gerade genutzten WLAN zum Einsatz kommt. Eine Alternative ist eine IP-Adresse gemäß RFC 6596, beispielsweise „100.64.0.1/10“ (siehe Beispiel für IPv4), die ebenfalls nicht über das Internet geroutet wird und damit als sicher gelten kann.
+
 Name der Netzwerkschnittstelle ermitteln: 
 ```
 ip addr
