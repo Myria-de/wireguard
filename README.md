@@ -41,7 +41,7 @@ AllowedIPs = 100.64.0.2/32
 [Interface]
 Address = 10.66.66.1/24,fd42:42:42::1/64
 ListenPort = 51820
-PrivateKey = MC1GuT/RBjcXEn66fDtoML+/QG86dsD9pSm1g1ar6ns=
+PrivateKey = [der schon vorhandene private Schlüssel des Servers]
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
 [Peer]
@@ -63,9 +63,10 @@ ip addr
 ## VPN-Client einrichten
 **Client-Konfiguration erzeugen**
 ```
-sudo mkdir /etc/wireguard
-(umask 077 && printf "[Interface]\nPrivateKey = " | sudo tee /etc/wireguard/wg0.conf > /dev/null)
-wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey | sudo tee /etc/wireguard/publickey
+printf "[Interface]\nPrivateKey = " | tee ~/wg0-client1.conf > /dev/null
+wg genkey | tee -a ~/wg0-client1.conf | wg pubkey | tee ~/client1_publickey
+printf "[Peer]\nPresharedKey = " | tee -a ~/wg0-client1.conf > /dev/null
+wg genpsk | tee -a ~/wg0-client1.conf
 ```
 **Client-Konfiguration**
 ```
@@ -74,16 +75,22 @@ Address = 100.64.0.2/32
 PrivateKey = [der schon vorhandene private Schlüssel des Cliens]
 
 [Peer]
-PublicKey = yIDlao0TEyGYuv7AWiRzn4VW6Obi1y3nSLhJrOZlc3s=
+PublicKey = [Schlüssel aus der Datei "/etc/wireguard/publickey" des Wireguard-Servers]
 AllowedIPs = 0.0.0.0/0 #kompletter Netzwerkzugriff
 #Zugriff nur auf Server und Heimnetzwerk
 #AllowedIPs = 100.64.0.1/32, 192.168.178.0/24
 Endpoint = domain.meinserver.de:51820
 ```
+Kopieren Sie die Client-Konfigurationsdatei "wg0-client1.conf" in den Ordner "/etc/wireguard".
+
 ## Wireguard starten
-Auf dem Server und Client:
+Auf dem Server:
 ```
 sudo wg-quick up wg0
+```
+Auf dem Client-PC:
+```
+sudo wg-quick up wg0-client1
 ```
 Infos zur Verbindung:
 ```
@@ -100,8 +107,25 @@ sudo systemctl enable --now wg-quick@wg0
 ## QR-Code für die Smartphone-Konfiguration erzeugen
 Auf einem Client-PC starten:
 ```
-sudo qrencode -o conf.png < /etc/wireguard/wg0.conf
+qrencode -t ansiutf8 -l L < ~/wg0-client1.conf
 ```
+In der Smartphone-App scannen Sie den QR-Code ein und aktiveren danach die VPN-Verbindung.
+
+## Alternative Opne VPN
+
+```
+wget -O pivpn https://install.pivpn.io
+bash pivpn
+```
+Konfigurationsdatei erstellen:
+```
+pivpn add
+```
+Auf dem Client-PC:
+```
+sudo openvpn --config [ovpn-Datei]
+```
+
 ## Links
 Wireguard: https://www.wireguard.com/
 
