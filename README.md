@@ -82,17 +82,17 @@ wg genkey | tee -a ~/wg0-client1.conf | wg pubkey | tee ~/client1_publickey
 printf "[Peer]\nPresharedKey = " | tee -a ~/wg0-client1.conf > /dev/null
 wg genpsk | tee -a ~/wg0-client1.conf
 ```
-**Client-Konfiguration**
+**Client-Konfiguration (IPv4 und IPv6)**
 ```
 [Interface]
-Address = 100.64.0.2/32
+Address = 10.66.66.2/24,fd42:42::42::::2/64
 PrivateKey = [der schon vorhandene private Schlüssel des Cliens]
 
 [Peer]
 PublicKey = [Schlüssel aus der Datei "/etc/wireguard/publickey" des Wireguard-Servers]
 AllowedIPs = 0.0.0.0/0 #kompletter Netzwerkzugriff
 #Zugriff nur auf Server und Heimnetzwerk
-#AllowedIPs = 100.64.0.1/32, 192.168.178.0/24
+#AllowedIPs = 10.66.66.1/32, 192.168.178.0/24
 Endpoint = domain.meinserver.de:51820
 ```
 Kopieren Sie die Client-Konfigurationsdatei "wg0-client1.conf" in den Ordner "/etc/wireguard".
