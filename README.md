@@ -1,7 +1,7 @@
 # wireguard
 Wireguard configuration examples
 
-Altenativ können Sie das Script wireguard-install.sh verwenden. Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
+Altenativ können Sie das Script wireguard-install.sh verwenden (Quelle: https://github.com/angristan/wireguard-install). Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
 
 ## Installation Ubuntu
 ```
@@ -26,19 +26,21 @@ wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey | sudo tee /etc/wire
 ```
 sudo gedit /etc/wireguard/wg0.conf &
 ```
-**Nur für IPv4**
+**Server-Konfiguration nur für IPv4 mit einem Client**
 ```
 [Interface]
-Address = 100.64.0.1/10
+Address = 10.66.66.1/24
 ListenPort = 51820
 PrivateKey = [der schon vorhandene private Schlüssel des Servers]
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s31f6 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s31f6 -j MASQUERADE
+
 [Peer]
 PublicKey = 
-AllowedIPs = 100.64.0.2/32
+AllowedIPs = 10.66.66.2/32
+PresharedKey =
 ```
-**Für IPv4 und IPv6 mit zwei Clients**
+**Server-Konfiguration für IPv4 und IPv6 mit zwei Clients**
 ```
 [Interface]
 Address = 10.66.66.1/24,fd42:42:42::1/64
@@ -84,6 +86,10 @@ AllowedIPs = 0.0.0.0/0 #kompletter Netzwerkzugriff
 Endpoint = domain.meinserver.de:51820
 ```
 Kopieren Sie die Client-Konfigurationsdatei "wg0-client1.conf" in den Ordner "/etc/wireguard".
+
+**Server-Konfiguration ergänzen**
+Ergänzen Sie auf dem Server in der Datei "/etc/wireguard/wg0.conf" unter "[Peer]" hinter "PublicKey=" den öffentlichen Schlüssel des Clients aus der Datei "~/client1_publickey" sowie den "PresharedKey" aus der Datei "~/wg0-client1.conf".
+Bei mehreren Clients vervielfältigen Sie den Abschnitt "[Peer]" und tragen den öffentlichen Schlüssel des jeweiligen Clients ein. Hinter "AllowedIPs=" passen Sie die IP-Adresse mit "10.66.66.3/32", "10.66.66.3/32" und so weiter an. 
 
 ## Wireguard starten
 Auf dem Server:
