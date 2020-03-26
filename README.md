@@ -26,6 +26,16 @@ wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey | sudo tee /etc/wire
 ```
 sudo gedit /etc/wireguard/wg0.conf &
 ```
+Der Server muss als Router IPv4- und IPv6-Pakete weiterleiten. Um die Funktion zu aktivieren, führen Sie diese Befehlszeile aus:
+```
+sudo gedit /etc/sysctl.conf
+```
+Entfernen Sie die Kommentarzeichen ("#") vor "net.ipv4.ip_forward=1" und "net.ipv6.conf.all.forwarding=1". Mit 
+```
+sysctl -p
+```
+wenden Sie die Änderungen ohne Neustart an.
+
 **Server-Konfiguration nur für IPv4 mit einem Client**
 ```
 [Interface]
