@@ -98,7 +98,14 @@ Endpoint = domain.meinserver.de:51820
 Kopieren Sie die Client-Konfigurationsdatei "wg0-client1.conf" in den Ordner "/etc/wireguard".
 
 **Server-Konfiguration ergänzen**
-Ergänzen Sie auf dem Server in der Datei "/etc/wireguard/wg0.conf" unter "[Peer]" hinter "PublicKey=" den öffentlichen Schlüssel des Clients aus der Datei "~/client1_publickey" sowie den "PresharedKey" aus der Datei "~/wg0-client1.conf".
+Ergänzen Sie auf dem Server in der Datei "/etc/wireguard/wg0.conf" unter "[Peer]" hinter "PublicKey=" den öffentlichen Schlüssel des Clients aus der Datei 
+```
+~/client1_publickey
+```
+sowie den "PresharedKey" aus der Datei
+```
+~/wg0-client1.conf.
+```
 Bei mehreren Clients vervielfältigen Sie den Abschnitt "[Peer]" und tragen den öffentlichen Schlüssel des jeweiligen Clients ein. Hinter "AllowedIPs=" passen Sie die IP-Adresse mit "10.66.66.3/32", "10.66.66.3/32" und so weiter an. 
 
 ## Wireguard starten
