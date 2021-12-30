@@ -14,6 +14,11 @@ sudo apt update
 sudo apt install wireguard qrencode
 ```
 ## Installation Raspberry Pi (Raspbian)
+**Update:** Im aktuellen Raspberry Pi OS mit Kerneln ab Version 5.10 lässt sich Wireguard aus den Standard-Repositorien installieren:
+```
+sudo apt install wireguard
+```
+Altere Raspian-Versionen:
 ```
 sudo apt install libmnl-dev build-essential git qrencode
 git clone https://git.zx2c4.com/WireGuard
