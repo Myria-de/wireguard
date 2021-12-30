@@ -1,6 +1,8 @@
 # wireguard
 Wireguard configuration examples
 
+**Ausführliche Anleitung:** https://www.pcwelt.de/ratgeber/VPN_mit_Wireguard-10646569.html
+
 Alternativ können Sie das Script wireguard-install.sh verwenden (Quelle: https://github.com/angristan/wireguard-install). Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
 
 ## Installation Ubuntu
