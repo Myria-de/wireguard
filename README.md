@@ -85,12 +85,12 @@ wg genpsk | tee -a ~/wg0-client1.conf
 **Client-Konfiguration (IPv4 und IPv6)**
 ```
 [Interface]
-Address = 10.66.66.2/24,fd42:42::42::::2/64
-PrivateKey = [der schon vorhandene private Schlüssel des Cliens]
+Address = 10.66.66.2/24, fd42:42:42::2/64
+PrivateKey = [der schon vorhandene private Schlüssel des Clients]
 
 [Peer]
 PublicKey = [Schlüssel aus der Datei "/etc/wireguard/publickey" des Wireguard-Servers]
-AllowedIPs = 0.0.0.0/0 #kompletter Netzwerkzugriff
+AllowedIPs = 0.0.0.0/0,::/0 #kompletter Netzwerkzugriff ipv4 und ipv6
 #Zugriff nur auf Server und Heimnetzwerk
 #AllowedIPs = 10.66.66.1/32, 192.168.178.0/24
 Endpoint = domain.meinserver.de:51820
