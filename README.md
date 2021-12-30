@@ -1,7 +1,7 @@
 # wireguard
 Wireguard configuration examples
 
-Altenativ können Sie das Script wireguard-install.sh verwenden (Quelle: https://github.com/angristan/wireguard-install). Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
+Alternativ können Sie das Script wireguard-install.sh verwenden (Quelle: https://github.com/angristan/wireguard-install). Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
 
 ## Installation Ubuntu
 
