@@ -6,6 +6,9 @@ Alternativ können Sie das Script wireguard-install.sh verwenden (Quelle: https:
 ## Installation Ubuntu
 
 **Update:** WireGuard ist ab Linux-Kernel Version 5.6 im Kernel enthalten und wurde auch in die Kernel der Ubuntu-LTS-Versionen Focal Fossa 20.04 (Kernel 5.4) und Bionic Beaver 18.04 (Kernel 4.15) zurück portiert.
+```
+sudo apt install wireguard
+```
 
 Installation bei älteren Ubuntu-Versionen:
 ```
