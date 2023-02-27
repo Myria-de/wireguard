@@ -150,7 +150,7 @@ qrencode -t ansiutf8 -l L < ~/wg0-client1.conf
 ```
 In der Smartphone-App scannen Sie den QR-Code ein und aktiveren danach die VPN-Verbindung.
 
-## Alternative Opne VPN
+## Alternative Open VPN
 
 ```
 wget -O pivpn https://install.pivpn.io
