@@ -1,7 +1,7 @@
 # wireguard
 Wireguard configuration examples
 
-**Ausführliche Anleitung:** https://www.pcwelt.de/ratgeber/VPN_mit_Wireguard-10646569.html
+**Ausführliche Anleitung:** https://www.pcwelt.de/article/1181301/vpn_mit_wireguard.html
 
 Alternativ können Sie das Script wireguard-install.sh verwenden (Quelle: https://github.com/angristan/wireguard-install). Es Installiert die nötige Software und erstellt die Konfigurationsdateien.
 
