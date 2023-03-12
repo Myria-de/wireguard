@@ -168,7 +168,7 @@ sudo openvpn --config [ovpn-Datei]
 ## Links
 Wireguard: https://www.wireguard.com/
 
-Open-VPN-Konfiguration: https://www.pcwelt.de/40450
+Open-VPN-Konfiguration: https://www.pcwelt.de/article/1149871/openvpn__sicher_unterwegs_in_unsicheren_netzen-verschluesselt_surfen.html
 
 CIDR to IPv4 Conversion: https://www.ipaddressguide.com/cidr
 
