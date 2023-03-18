@@ -11,7 +11,7 @@ Wer einen Dual-Stack Internet-Zugang besitzt verfügt über eine öffentliche IP
 
 Bei DS-Lite fehlt die öffentliche IPv4-Adresse. In diesem Fall sind der Router und damit die Geräte im lokalen Netzwerk von außen nur über IPv6-Adressen erreichbar. Verfügt eine Client über IPv4 und IPv6 ist das kein Problem. Sollte der Client jedoch nur einen IPv4-Adresse erhalten, kann man weder auf den Router noch den Wireguard-Server zugreifen. Umgekehrt können Clients auch ohne eigene IPv6-Adresse IPv6 über Wireguard verwenden.
 
-Damit ein Wireguard-Server über das Internet erreichbar ist, müssen Sie eine Portweiterlitung einrichten. Informationen dazu finden Sie unter https://www.pcwelt.de/article/1086581.
+Damit ein Wireguard-Server über das Internet erreichbar ist, müssen Sie eine Portweiterleitung einrichten. Informationen dazu finden Sie unter https://www.pcwelt.de/article/1086581.
 
 ## Installation unter Ubuntu
 
