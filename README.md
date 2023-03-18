@@ -17,7 +17,7 @@ Damit ein Wireguard-Server über das Internet erreichbar ist, müssen Sie eine P
 
 **Update:** WireGuard ist ab Linux-Kernel Version 5.6 im Kernel enthalten und wurde auch in die Kernel der Ubuntu-LTS-Versionen Focal Fossa 20.04 (Kernel 5.4) und Bionic Beaver 18.04 (Kernel 4.15) zurück portiert.
 ```
-sudo apt install wireguard
+sudo apt install wireguard resolvconf
 ```
 
 Installation bei älteren Ubuntu-Versionen:
@@ -97,6 +97,11 @@ Name der Netzwerkschnittstelle ermitteln:
 ip addr
 ```
 ## VPN-Client einrichten
+Auf dem Client-PC installieren Sie die erforderlichen Pakete mit
+```
+sudo apt install wireguard resolvconf
+```
+
 **Client-Konfiguration erzeugen**
 ```
 printf "[Interface]\nPrivateKey = " | tee ~/wg0-client1.conf > /dev/null
@@ -180,8 +185,10 @@ Open-VPN-Konfiguration: https://www.pcwelt.de/article/1149871/openvpn__sicher_un
 
 CIDR to IPv4 Conversion: https://www.ipaddressguide.com/cidr
 
-Öffentliche IP-Adresse ermitteln: https://www.whatsmyip.org
+Öffentliche IP-Adressen ermitteln: https://www.whatsmyip.org
 
 VPN-CLient-Software: https://tunsafe.com
+
+Wireguird (https://github.com/UnnoTed/wireguird) bietet eine Linux-GUI für Wireguard. Unter „Releases“ wird ein deb-Paket für die Installation angeboten. Das Tool berücksichtigt vorhandene Konfiguration unter „/etc/wireguard“, über „Add Tunnel“ lassen sich Konfigurationsdateien importieren.
 
 
