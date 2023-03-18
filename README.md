@@ -7,7 +7,7 @@ Alternativ können Sie das Script wireguard-install.sh verwenden (Quelle: https:
 
 ## Hinweise zu IPv4 und IPv6
 
-Wer einen Dual-Stack Internet-Zugang besitzt verfügt über eine öffentliche IPv4- und IPv6-Adresse. Bei einer Fritzbox beispielsweise ist das in der Konfigurationsoberfläche unter "Internet -> Online-Monitor" zu erkennen. Hier gibt es Einträge für "Internet, IPv4" und "Internet, IPv6".
+Wer einen Dual-Stack Internet-Zugang besitzt, verfügt über eine öffentliche IPv4- und IPv6-Adresse. Bei einer Fritzbox beispielsweise ist das in der Konfigurationsoberfläche unter "Internet -> Online-Monitor" zu erkennen. Hier gibt es Einträge für "Internet, IPv4" und "Internet, IPv6".
 
 Bei DS-Lite fehlt die öffentliche IPv4-Adresse. In diesem Fall sind der Router und damit die Geräte im lokalen Netzwerk von außen nur über IPv6-Adressen erreichbar. Verfügt eine Client über IPv4 und IPv6 ist das kein Problem. Sollte der Client jedoch nur einen IPv4-Adresse erhalten, kann man weder auf den Router noch den Wireguard-Server zugreifen. Umgekehrt können Clients auch ohne eigene IPv6-Adresse IPv6 über Wireguard verwenden.
 
